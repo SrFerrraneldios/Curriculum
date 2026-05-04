@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Ferran Ruiz López · CV profesional con música</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at 10% 30%, #0a0f1e, #03060c);
+            color: #eef4ff;
+            min-height: 100vh;
+            padding: 2rem;
+            cursor: pointer;
+            position: relative;
+        }
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at 70% 30%, rgba(44,125,160,0.15), transparent);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .container { max-width: 1300px; margin: 0 auto; position: relative; z-index: 2; }
+        .glass-card {
+            background: rgba(18, 25, 45, 0.75);
+            backdrop-filter: blur(12px);
+            border-radius: 2rem;
+            border: 1px solid rgba(66, 153, 225, 0.4);
+            transition: all 0.3s;
+        }
+        .glass-card:hover { transform: translateY(-5px); border-color: rgba(66, 153, 225, 0.8); }
+        .hero { padding: 2rem; margin-bottom: 2rem; animation: fadeInUp 0.6s ease; }
+        .hero-flex { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+        h1 {
+            font-size: 2.8rem; font-weight: 800;
+            background: linear-gradient(135deg, #fff, #7bc9f0);
+            background-clip: text; -webkit-background-clip: text; color: transparent;
+        }
+        .dynamic-text {
+            background: rgba(44,125,160,0.3);
+            padding: 0.3rem 1rem; border-radius: 40px; display: inline-block;
+        }
+        .btn-video {
+            background: #2c7da0; border: none; padding: 0.7rem 1.5rem; border-radius: 60px;
+            color: white; font-weight: bold; cursor: pointer; transition: 0.2s;
+        }
+        .btn-video:hover { background: #1e5f7a; transform: scale(1.02); }
+        .contact-bar {
+            display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 1.5rem;
+            padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.2); font-size: 0.85rem;
+        }
+        .contact-bar a, .contact-bar span { color: white; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; }
+        .mini-btn {
+            background: rgba(255,255,255,0.15); border: none; border-radius: 30px;
+            padding: 0.2rem 0.8rem; font-size: 0.7rem; color: white; cursor: pointer;
+        }
+        .grid { display: grid; grid-template-columns: 1fr 1.8fr; gap: 1.8rem; }
+        .sidebar, .main { padding: 1.8rem; }
+        .avatar {
+            width: 140px; height: 140px; margin: 0 auto 1rem; border-radius: 50%;
+            overflow: hidden; border: 3px solid #2c7da0; animation: float 3s infinite;
+        }
+        @keyframes float { 0% { transform: translateY(0); } 50% { transform: translateY(-5px); } 100% { transform: translateY(0); } }
+        .avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .section-title {
+            font-size: 1.2rem; font-weight: 700; margin: 1.5rem 0 1rem;
+            border-left: 4px solid #2c7da0; padding-left: 0.8rem; display: flex; align-items: center; gap: 0.6rem;
+        }
+        .skill-item, .cert-item, .lang-item, .soft-item {
+            display: flex; align-items: flex-start; gap: 0.8rem; margin-bottom: 1rem;
+            background: rgba(44,125,160,0.05); padding: 0.5rem; border-radius: 1rem;
+            transition: 0.2s;
+        }
+        .skill-item:hover { background: rgba(44,125,160,0.2); transform: translateX(5px); }
+        .profile-text {
+            background: rgba(44,125,160,0.15); padding: 1rem; border-radius: 1rem; border-left: 3px solid #2c7da0;
+        }
+        .timeline-item { margin-bottom: 1.5rem; padding-left: 0.8rem; border-left: 2px solid #2c7da0; transition: 0.2s; }
+        .timeline-item:hover { border-left-width: 4px; }
+        .item-title { font-weight: 800; display: flex; justify-content: space-between; flex-wrap: wrap; }
+        .date { font-size: 0.7rem; background: rgba(44,125,160,0.4); padding: 0.2rem 0.6rem; border-radius: 30px; }
+        .badge-group { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1rem 0; }
+        .badge {
+            background: rgba(44,125,160,0.2); border: 1px solid #2c7da0; border-radius: 40px;
+            padding: 0.3rem 0.9rem; font-size: 0.7rem; transition: 0.2s;
+        }
+        .badge:hover { background: #2c7da0; transform: translateY(-2px); }
+        footer { text-align: center; margin-top: 2rem; font-size: 0.7rem; opacity: 0.6; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px);} to { opacity: 1; transform: translateY(0);} }
+        @media (max-width: 800px) { body { padding: 1rem; } .grid { grid-template-columns: 1fr; } h1 { font-size: 2rem; } }
+        .modal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 200;
+            align-items: center; justify-content: center;
+        }
+        .modal-content {
+            background: #0f172a; border-radius: 2rem; padding: 2rem; text-align: center;
+            border: 1px solid #2c7da0; max-width: 90%;
+        }
+        /* Mensaje de aviso para el clic */
+        .click-message {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(8px);
+            padding: 0.5rem 1rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            color: #aaffdd;
+            border-left: 3px solid #4ade80;
+            z-index: 100;
+            pointer-events: none;
+            transition: opacity 1s;
+        }
+    </style>
+</head>
+<body id="mainBody">
+<div class="container">
+    <div class="glass-card hero">
+        <div class="hero-flex">
+            <div><h1>Ferran Ruiz López</h1><div class="dynamic-text" id="roleText"><i class="fas fa-code"></i> Estudiante de SMX</div></div>
+            <button class="btn-video" id="videoBtn"><i class="fas fa-play"></i> 🎥 Vídeo CV</button>
+        </div>
+        <div class="contact-bar">
+            <span><i class="fas fa-map-marker-alt"></i> Badia del Vallès</span>
+            <a href="tel:624403065"><i class="fas fa-phone-alt"></i> 624 403 065</a>
+            <div><i class="fas fa-envelope"></i> ferranruiz166@gmail.com<button id="copyEmail" class="mini-btn"><i class="fas fa-copy"></i> Copiar</button></div>
+            <span><i class="fas fa-globe"></i> Portfolio en desarrollo</span>
+        </div>
+    </div>
+    <div class="grid">
+        <div class="glass-card sidebar">
+            <div class="avatar"><img src="foto.png" alt="Ferran" id="avatarImg"></div>
+            <div style="text-align: center; font-size: 0.7rem;">Foto profesional</div>
+            <div class="section-title"><i class="fas fa-microchip"></i> Competencias técnicas</div>
+            <div class="skill-item"><i class="fas fa-server"></i> <strong>Sistemas y Redes:</strong> Instalación y soporte Windows/Linux, mantenimiento hardware, redes LAN.</div>
+            <div class="skill-item"><i class="fab fa-python"></i> <strong>Desarrollo:</strong> Python sólido, lógica de programación (CodeLearn).</div>
+            <div class="skill-item"><i class="fas fa-table"></i> <strong>Ofimática:</strong> Excel (bases de datos), Word, PowerPoint.</div>
+            <div class="skill-item"><i class="fas fa-video"></i> <strong>Edición multimedia:</strong> Foto y vídeo, contenido digital.</div>
+            <div class="section-title"><i class="fas fa-certificate"></i> Certificaciones</div>
+            <div class="cert-item"><i class="fas fa-shield-alt"></i> <strong>Prevención de Riesgos Laborales (30h)</strong> - Seguridad en montaje y mantenimiento IT.</div>
+            <div class="section-title"><i class="fas fa-language"></i> Idiomas</div>
+            <div class="lang-item"><i class="fas fa-comment"></i> Catalán: C1 (Certificado)</div>
+            <div class="lang-item"><i class="fas fa-comment-dots"></i> Castellano: Nativo</div>
+            <div class="lang-item"><i class="fas fa-comment"></i> Inglés: Nivel técnico / básico</div>
+            <div class="section-title"><i class="fas fa-heart"></i> Habilidades personales</div>
+            <div class="soft-item"><i class="fas fa-smile"></i> Amable, resolutivo, creativo</div>
+            <div class="soft-item"><i class="fas fa-users"></i> Integración en equipos multidisciplinares</div>
+            <div class="soft-item"><i class="fas fa-brain"></i> Pensamiento computacional, alta capacidad resolutiva</div>
+        </div>
+        <div class="glass-card main">
+            <div class="section-title"><i class="fas fa-user-astronaut"></i> Perfil profesional</div>
+            <div class="profile-text">Estudiante de Grado Medio en Sistemas Microinformáticos y Redes con formación especializada en programación competitiva y pensamiento computacional en CodeLearn. Alta capacidad resolutiva para montaje de equipos, configuración de redes y desarrollo de software básico. Busco mi primera oportunidad para aplicar mis habilidades técnicas en un entorno profesional innovador.</div>
+            <div class="section-title"><i class="fas fa-graduation-cap"></i> Formación académica</div>
+            <div class="timeline-item"><div class="item-title">CFGM Sistemes Microinformàtics i Xarxes (SMX) <span class="date">En curso</span></div><div>INS Badia, Badia del Vallès</div><div>Montaje/mantenimiento de equipos, administración de redes locales, SO y seguridad.</div></div>
+            <div class="timeline-item"><div class="item-title">Pensamiento Computacional y Programación <span class="date">En curso</span></div><div>CodeLearn Sabadell</div><div>Algoritmos, estructuras de datos, Python y lógica avanzada.</div></div>
+            <div class="timeline-item"><div class="item-title">Educación Secundaria Obligatoria (ESO) <span class="date">Finalizado 2025</span></div><div>INS Federica Montseny, Badia del Vallès</div></div>
+            <div class="section-title"><i class="fas fa-briefcase"></i> Experiencia laboral</div>
+            <div class="timeline-item"><div class="item-title">Ayudante de Mozo de Almacén <span class="date">Verano 2025</span></div><div>Seana Textil · Polinyà</div><div>Logística, gestión de inventario, responsabilidad y trabajo en equipo eficiente.</div></div>
+            <div class="section-title"><i class="fas fa-tools"></i> Stack técnico</div>
+            <div class="badge-group"><span class="badge"><i class="fas fa-wifi"></i> Redes LAN</span><span class="badge"><i class="fas fa-desktop"></i> Montaje PC</span><span class="badge"><i class="fab fa-windows"></i> Windows 10/11</span><span class="badge"><i class="fab fa-linux"></i> Linux Ubuntu</span><span class="badge"><i class="fas fa-code"></i> Python</span><span class="badge"><i class="fas fa-shield-alt"></i> Prevención riesgos</span></div>
+            <div style="margin-top: 1rem;"><i class="fas fa-clock"></i> Disponible para prácticas / primer empleo IT</div>
+        </div>
+    </div>
+    <footer>CV interactivo · Haz clic en cualquier lugar para activar la música ambiental</footer>
+</div>
+
+<div id="videoModal" class="modal"><div class="modal-content"><i class="fas fa-video" style="font-size: 2rem; color: #2c7da0;"></i><p style="margin: 1rem 0;">Vídeo CV - Enlace pendiente</p><button id="closeModal" style="background:#2c7da0; border:none; padding:0.5rem 1rem; border-radius:2rem; color:white;">Cerrar</button></div></div>
+
+<div class="click-message" id="clickMsg">🎵 Haz clic en cualquier lugar para activar la música de fondo</div>
+
+<script>
+    (function(){
+        // ==================================================
+        // 🔧 CAMBIA ESTA LÍNEA POR EL NOMBRE DE TU ARCHIVO MP3
+        const NOMBRE_ARCHIVO = 'Shop - The Legend of Zelda_ Ocarina of Time.mp3';
+        // ==================================================
+        
+        const audio = new Audio(NOMBRE_ARCHIVO);
+        audio.loop = true;
+        audio.volume = 0.2; // Volumen suave
+        
+        let sonidoActivado = false;
+        const msgDiv = document.getElementById('clickMsg');
+        
+        function activarSonido() {
+            if (sonidoActivado) return;
+            audio.play().then(() => {
+                sonidoActivado = true;
+                if (msgDiv) {
+                    msgDiv.innerHTML = '🎵 Música sonando (Shop Zelda) · Volumen suave';
+                    msgDiv.style.backgroundColor = 'rgba(0,0,0,0.5)';
+                    setTimeout(() => {
+                        msgDiv.style.opacity = '0';
+                        setTimeout(() => { if(msgDiv) msgDiv.style.display = 'none'; }, 1000);
+                    }, 3000);
+                }
+                document.body.removeEventListener('click', activarSonido);
+            }).catch(err => {
+                console.error('Error:', err);
+                if (msgDiv) {
+                    if (err.name === 'NotFoundError') {
+                        msgDiv.innerHTML = '❌ No se encuentra el archivo. ¿El nombre es exactamente "' + NOMBRE_ARCHIVO + '"? Revisa mayúsculas y extensión .mp3';
+                        msgDiv.style.color = '#ffaaaa';
+                    } else {
+                        msgDiv.innerHTML = '❌ Error al reproducir: ' + err.message;
+                    }
+                }
+            });
+        }
+        
+        // Cualquier clic en la página activa la música
+        document.body.addEventListener('click', activarSonido);
+        
+        // --- Resto de funcionalidades ---
+        // Texto dinámico
+        const texts = ["Estudiante de SMX | Redes", "Apasionado por la tecnología", "Python · Hardware · Lógica", "Creativo y resolutivo"];
+        let tIndex = 0, cIndex = 0, deleting = false;
+        const roleSpan = document.getElementById('roleText');
+        function typeWriter() {
+            const current = texts[tIndex];
+            if (deleting) {
+                roleSpan.innerHTML = `<i class="fas fa-code"></i> ${current.substring(0, cIndex-1)}`;
+                cIndex--;
+            } else {
+                roleSpan.innerHTML = `<i class="fas fa-code"></i> ${current.substring(0, cIndex+1)}`;
+                cIndex++;
+            }
+            if (!deleting && cIndex === current.length) { deleting = true; setTimeout(typeWriter, 2000); return; }
+            if (deleting && cIndex === 0) { deleting = false; tIndex = (tIndex+1) % texts.length; setTimeout(typeWriter, 300); return; }
+            setTimeout(typeWriter, deleting ? 50 : 100);
+        }
+        typeWriter();
+        
+        // Modal vídeo
+        const vidBtn = document.getElementById('videoBtn');
+        const modal = document.getElementById('videoModal');
+        const closeModal = document.getElementById('closeModal');
+        if(vidBtn) vidBtn.onclick = () => modal.style.display = 'flex';
+        if(closeModal) closeModal.onclick = () => modal.style.display = 'none';
+        window.onclick = (e) => { if (e.target === modal) modal.style.display = 'none'; };
+        
+        // Copiar email
+        const copyBtn = document.getElementById('copyEmail');
+        if(copyBtn) {
+            copyBtn.onclick = () => {
+                navigator.clipboard.writeText('ferranruiz166@gmail.com').then(() => {
+                    copyBtn.innerHTML = '<i class="fas fa-check"></i> Copiado!';
+                    setTimeout(() => copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copiar', 1500);
+                });
+            };
+        }
+        
+        // Fallback foto
+        const avatarImg = document.getElementById('avatarImg');
+        if(avatarImg) {
+            avatarImg.onerror = () => { avatarImg.src = "https://ui-avatars.com/api/?background=1b4a6e&color=fff&rounded=true&size=140&name=Ferran+R"; };
+        }
+    })();
+</script>
+</body>
+</html>
