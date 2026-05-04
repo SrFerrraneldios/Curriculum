@@ -46,11 +46,6 @@
             background: rgba(44,125,160,0.3);
             padding: 0.3rem 1rem; border-radius: 40px; display: inline-block;
         }
-        .btn-video {
-            background: #2c7da0; border: none; padding: 0.7rem 1.5rem; border-radius: 60px;
-            color: white; font-weight: bold; cursor: pointer; transition: 0.2s;
-        }
-        .btn-video:hover { background: #1e5f7a; transform: scale(1.02); }
         .contact-bar {
             display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 1.5rem;
             padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.2); font-size: 0.85rem;
@@ -94,15 +89,6 @@
         footer { text-align: center; margin-top: 2rem; font-size: 0.7rem; opacity: 0.6; }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px);} to { opacity: 1; transform: translateY(0);} }
         @media (max-width: 800px) { body { padding: 1rem; } .grid { grid-template-columns: 1fr; } h1 { font-size: 2rem; } }
-        .modal {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 200;
-            align-items: center; justify-content: center;
-        }
-        .modal-content {
-            background: #0f172a; border-radius: 2rem; padding: 2rem; text-align: center;
-            border: 1px solid #2c7da0; max-width: 90%;
-        }
     </style>
 </head>
 <body>
@@ -110,7 +96,6 @@
     <div class="glass-card hero">
         <div class="hero-flex">
             <div><h1>Ferran Ruiz López</h1><div class="dynamic-text" id="roleText"><i class="fas fa-code"></i> Estudiante de SMX</div></div>
-            <button class="btn-video" id="videoBtn"><i class="fas fa-play"></i> 🎥 Vídeo CV</button>
         </div>
         <div class="contact-bar">
             <span><i class="fas fa-map-marker-alt"></i> Badia del Vallès</span>
@@ -156,8 +141,6 @@
     <footer>CV interactivo · Actualización 2026</footer>
 </div>
 
-<div id="videoModal" class="modal"><div class="modal-content"><i class="fas fa-video" style="font-size: 2rem; color: #2c7da0;"></i><p style="margin: 1rem 0;">Vídeo CV - Enlace pendiente</p><button id="closeModal" style="background:#2c7da0; border:none; padding:0.5rem 1rem; border-radius:2rem; color:white;">Cerrar</button></div></div>
-
 <script>
     (function(){
         // Texto dinámico (efecto máquina de escribir)
@@ -178,14 +161,6 @@
             setTimeout(typeWriter, deleting ? 50 : 100);
         }
         typeWriter();
-
-        // Modal del vídeo
-        const vidBtn = document.getElementById('videoBtn');
-        const modal = document.getElementById('videoModal');
-        const closeModal = document.getElementById('closeModal');
-        if (vidBtn) vidBtn.onclick = () => modal.style.display = 'flex';
-        if (closeModal) closeModal.onclick = () => modal.style.display = 'none';
-        window.onclick = (e) => { if (e.target === modal) modal.style.display = 'none'; };
 
         // Copiar email
         const copyBtn = document.getElementById('copyEmail');
