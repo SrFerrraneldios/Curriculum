@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Ferran Ruiz López · CV profesional con música</title>
+    <title>Ferran Ruiz López · CV profesional</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -14,8 +14,6 @@
             color: #eef4ff;
             min-height: 100vh;
             padding: 2rem;
-            cursor: pointer;
-            position: relative;
         }
         body::before {
             content: "";
@@ -105,25 +103,9 @@
             background: #0f172a; border-radius: 2rem; padding: 2rem; text-align: center;
             border: 1px solid #2c7da0; max-width: 90%;
         }
-        /* Mensaje de aviso para el clic */
-        .click-message {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background: rgba(0,0,0,0.7);
-            backdrop-filter: blur(8px);
-            padding: 0.5rem 1rem;
-            border-radius: 40px;
-            font-size: 0.8rem;
-            color: #aaffdd;
-            border-left: 3px solid #4ade80;
-            z-index: 100;
-            pointer-events: none;
-            transition: opacity 1s;
-        }
     </style>
 </head>
-<body id="mainBody">
+<body>
 <div class="container">
     <div class="glass-card hero">
         <div class="hero-flex">
@@ -171,58 +153,14 @@
             <div style="margin-top: 1rem;"><i class="fas fa-clock"></i> Disponible para prácticas / primer empleo IT</div>
         </div>
     </div>
-    <footer>CV interactivo · Haz clic en cualquier lugar para activar la música ambiental</footer>
+    <footer>CV interactivo · Actualización 2026</footer>
 </div>
 
 <div id="videoModal" class="modal"><div class="modal-content"><i class="fas fa-video" style="font-size: 2rem; color: #2c7da0;"></i><p style="margin: 1rem 0;">Vídeo CV - Enlace pendiente</p><button id="closeModal" style="background:#2c7da0; border:none; padding:0.5rem 1rem; border-radius:2rem; color:white;">Cerrar</button></div></div>
 
-<div class="click-message" id="clickMsg">🎵 Haz clic en cualquier lugar para activar la música de fondo</div>
-
 <script>
     (function(){
-        // ==================================================
-        // 🔧 CAMBIA ESTA LÍNEA POR EL NOMBRE DE TU ARCHIVO MP3
-        const NOMBRE_ARCHIVO = 'Shop - The Legend of Zelda_ Ocarina of Time.mp3';
-        // ==================================================
-        
-        const audio = new Audio(NOMBRE_ARCHIVO);
-        audio.loop = true;
-        audio.volume = 0.2; // Volumen suave
-        
-        let sonidoActivado = false;
-        const msgDiv = document.getElementById('clickMsg');
-        
-        function activarSonido() {
-            if (sonidoActivado) return;
-            audio.play().then(() => {
-                sonidoActivado = true;
-                if (msgDiv) {
-                    msgDiv.innerHTML = '🎵 Música sonando (Shop Zelda) · Volumen suave';
-                    msgDiv.style.backgroundColor = 'rgba(0,0,0,0.5)';
-                    setTimeout(() => {
-                        msgDiv.style.opacity = '0';
-                        setTimeout(() => { if(msgDiv) msgDiv.style.display = 'none'; }, 1000);
-                    }, 3000);
-                }
-                document.body.removeEventListener('click', activarSonido);
-            }).catch(err => {
-                console.error('Error:', err);
-                if (msgDiv) {
-                    if (err.name === 'NotFoundError') {
-                        msgDiv.innerHTML = '❌ No se encuentra el archivo. ¿El nombre es exactamente "' + NOMBRE_ARCHIVO + '"? Revisa mayúsculas y extensión .mp3';
-                        msgDiv.style.color = '#ffaaaa';
-                    } else {
-                        msgDiv.innerHTML = '❌ Error al reproducir: ' + err.message;
-                    }
-                }
-            });
-        }
-        
-        // Cualquier clic en la página activa la música
-        document.body.addEventListener('click', activarSonido);
-        
-        // --- Resto de funcionalidades ---
-        // Texto dinámico
+        // Texto dinámico (efecto máquina de escribir)
         const texts = ["Estudiante de SMX | Redes", "Apasionado por la tecnología", "Python · Hardware · Lógica", "Creativo y resolutivo"];
         let tIndex = 0, cIndex = 0, deleting = false;
         const roleSpan = document.getElementById('roleText');
@@ -240,18 +178,18 @@
             setTimeout(typeWriter, deleting ? 50 : 100);
         }
         typeWriter();
-        
-        // Modal vídeo
+
+        // Modal del vídeo
         const vidBtn = document.getElementById('videoBtn');
         const modal = document.getElementById('videoModal');
         const closeModal = document.getElementById('closeModal');
-        if(vidBtn) vidBtn.onclick = () => modal.style.display = 'flex';
-        if(closeModal) closeModal.onclick = () => modal.style.display = 'none';
+        if (vidBtn) vidBtn.onclick = () => modal.style.display = 'flex';
+        if (closeModal) closeModal.onclick = () => modal.style.display = 'none';
         window.onclick = (e) => { if (e.target === modal) modal.style.display = 'none'; };
-        
+
         // Copiar email
         const copyBtn = document.getElementById('copyEmail');
-        if(copyBtn) {
+        if (copyBtn) {
             copyBtn.onclick = () => {
                 navigator.clipboard.writeText('ferranruiz166@gmail.com').then(() => {
                     copyBtn.innerHTML = '<i class="fas fa-check"></i> Copiado!';
@@ -259,11 +197,13 @@
                 });
             };
         }
-        
-        // Fallback foto
+
+        // Fallback para la foto de perfil (si no existe foto.png)
         const avatarImg = document.getElementById('avatarImg');
-        if(avatarImg) {
-            avatarImg.onerror = () => { avatarImg.src = "https://ui-avatars.com/api/?background=1b4a6e&color=fff&rounded=true&size=140&name=Ferran+R"; };
+        if (avatarImg) {
+            avatarImg.onerror = () => {
+                avatarImg.src = "https://ui-avatars.com/api/?background=1b4a6e&color=fff&rounded=true&size=140&name=Ferran+R";
+            };
         }
     })();
 </script>
